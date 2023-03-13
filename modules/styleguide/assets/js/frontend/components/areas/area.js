@@ -15,18 +15,22 @@ export default function Area( props ) {
 	return (
 		<>
 			<AreaTitle name={ config.type }>{ config.title }</AreaTitle>
-			{ config.sections.map( ( section ) => {
-				const items = settings.get( config.type ).get( section.type );
+			{ ! isReady ? <Loader /> :
+				<>
+					{ config.sections.map( ( section ) => {
+							const items = settings.get( config.type ).get( section.type );
 
-				return items.length &&
-					<Section key={ section.type }
-						title={ section.title }
-						items={ items }
-						columns={ section.columns }
-						component={ config.component }
-						type={ section.type }
-					/>;
-			} ) }
+							return items.length &&
+								<Section key={ section.type }
+									title={ section.title }
+									items={ items }
+									columns={ section.columns }
+									component={ config.component }
+									type={ section.type }
+						/>;
+					} ) }
+				</>
+			}
 		</>
 	);
 }
