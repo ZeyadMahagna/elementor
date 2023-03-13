@@ -22,25 +22,25 @@ export default function FontsArea() {
 
 	const { isLoading, settings } = useSettings( { type: 'typography' } );
 
-	if ( isLoading ) {
-		return <Loader />;
-	}
-
 	return (
 		<Wrapper ref={ fontsAreaRef }>
 			<AreaTitle name="fonts">Global Fonts</AreaTitle>
-			<Section title="System Fonts"
-				source={ settings.system_typography }
-				type="system"
-				flex={ 'column' }
-				component={ Font }
-				/>
-			<Section title="Custom Fonts"
-				source={ settings.custom_typography }
-				type="custom"
-				flex={ 'column' }
-				component={ Font }
-				/>
+			{ isLoading ? <Loader /> :
+				<>
+					<Section title="System Fonts"
+						source={ settings.system_typography }
+						type="system"
+						flex={ 'column' }
+						component={ Font }
+						/>
+					<Section title="Custom Fonts"
+						source={ settings.custom_typography }
+						type="custom"
+						flex={ 'column' }
+						component={ Font }
+						/>
+				</>
+			}
 		</Wrapper>
 	);
 }

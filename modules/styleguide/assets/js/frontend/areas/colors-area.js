@@ -21,25 +21,25 @@ export default function ColorsArea() {
 
 	const { isLoading, settings } = useSettings( { type: 'colors' } );
 
-	if ( isLoading ) {
-		return <Loader />;
-	}
-
 	return (
 		<Wrapper ref={ colorsAreaRef }>
 			<AreaTitle name="colors">Global Colors</AreaTitle>
-			<Section title="System Colors"
-				source={ settings.system_colors }
-				colorWidth="191px"
-				component={ Color }
-				type="system"
-			/>
-			<Section title="Custom Colors"
-				source={ settings.custom_colors }
-				colorWidth="114px"
-				component={ Color }
-				type="custom"
-			/>
+			{ isLoading ? <Loader /> :
+				<>
+					<Section title="System Colors"
+						source={ settings.system_colors }
+						colorWidth="191px"
+						component={ Color }
+						type="system"
+					/>
+					<Section title="Custom Colors"
+						source={ settings.custom_colors }
+						colorWidth="114px"
+						component={ Color }
+						type="custom"
+					/>
+				</>
+			}
 		</Wrapper>
 	);
 }

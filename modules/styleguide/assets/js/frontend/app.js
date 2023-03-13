@@ -16,9 +16,7 @@ const Content = styled.div`
 export default function App() {
 	const { isLoading, settings } = useSettings( { type: 'config' } );
 
-	if ( isLoading ) {
-		return <Loader />;
-	}
+	// TODO check why removing loader renders app twice, can we remove the loader for the header?
 
 	const { is_debug: isDebug } = settings,
 		Wrapper = isDebug ? React.StrictMode : React.Fragment;
